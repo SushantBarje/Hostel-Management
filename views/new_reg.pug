@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1 HOSTEL MANAGEMENT
+  a(href='/') Back
+  .adminloginbox
+  form(action='/new_reg' method='post' autocomplete='off')
+    h2 Student Verification
+    div
+      label(for='email') Email
+      div
+        input(type='email' name='email' placeholder='Enter Email' required='')
+    div
+      label(for='password') Password
+      div
+        input(type='password' name='password' placeholder='Enter Password' required='')
+    button(type='submit' onclick="myfun1()") Submit
+  
+  script.
+    function myfun1(){
+        var msg = '#{message}';
+        alert(msg);
+      }

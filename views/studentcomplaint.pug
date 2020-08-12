@@ -1,0 +1,134 @@
+extends layout
+
+block content 
+  link(rel="stylesheet", href='/stylesheets/sidebar.css')
+  link(rel="stylesheet", href="/stylesheets/studentcomplaint.css")
+  .header-block
+    h1 HOSTEL MANAGEMENT
+    a(href='/logout') Logout
+  .w3-sidebar
+    ul
+      li
+        a(href='/studentdash') Dashboard
+      li
+        a(href='/studentprofile') Profile
+      li(id="active")
+        a(href='/studentcomplaint') Complaint
+      li
+        a(href='/studentnightout') Night Out
+      li
+        a(href='/notice') Notice
+  .container
+    h2 Complaint box
+    hr
+    .contents
+      button(type="button" id="btn3" class="btn btn-danger" data-toggle='modal' data-target='#myModal' onclick="model()") + New Complaint
+      button(type="button" id="btn4" class="btn btn-primary" onclick="show()") Complaints Status
+      form(action="/done" method="get")
+      button(type="button" id="btn5" class="btn btn-primary" onclick="done()" value="Done") Solved Complaints 
+    hr
+  #myModal.modal
+    .modal-dialog.modal-dialog-centered
+      .modal-content
+  
+        .modal-header
+          h4.modal-title New Complaint
+          button.close(type='button' data-dismiss='modal') &times;
+
+        .modal-body
+          .container
+            div
+              form(action='/studentcomplaint' method='post')
+                label(for="category") Category
+                select(name='category' class="form-control")
+                  -var options = data[0]
+                  each opt in options
+                    option(value=opt.id) #{opt.complaint_name}
+                br
+                br
+                label(for="complaint") Descripation
+                textarea#complaintbox(name='complaint' class="form-control" rows="10" cols='30' placeholder='Enter Your complaint')
+                br
+                button(type='Submit' class="btn btn-danger" id="btn2") Submit
+  .container
+    table(id="tb" style="display:none" class="table table-grey table-bordered")
+      thead.thead-dark
+        tr
+          th(style="width:150px") Complaint ID
+          th(style="width:150px") Applied Date
+          th Complaint
+          th Replay
+          th Status
+      tbody
+        -var tds = data[2]
+        -if(tds.length > 0)
+          each dat in tds
+            tr
+              td #{dat.description_id}
+              td #{dat.applied_date}
+              td #{dat.complaint}
+              -if(dat.replay > 0)
+                td #{dat.replay}
+              -else
+                td No reply
+              td #{dat.status}
+              
+
+        -else 
+          tr
+            td(colspan="5" style="text-align:center;padding:40px") </b> No Complaints
+        tr
+          td(colspan=5)
+            button(type='button' class="btn btn-danger" id="btn1" data-toggle='modal' data-target='#myModal') + New Complaint
+  
+  .container
+      table(id="done" style="display:none" class="table table-grey table-bordered")
+        thead.thead-dark
+          tr
+            th(style="width:150px") Complaint ID
+            th(style="width:150px") Applied Date
+            th Complaint
+            th Status
+            th Replay
+        tbody
+          -var tds2 = data[1]
+          -if(tds2.length > 0)
+            each dat2 in tds2
+              tr
+                td #{dat2.description_id}
+                td #{dat2.applied_date}
+                td #{dat2.complaint}
+                td #{dat2.status}
+                td #{dat2.replay}
+          -else
+            tr
+              td(colspan="5" style="text-align:center;padding:40px") </b>No Solved Complaints
+          tr
+            td(colspan=5)
+              button(type='button' class="btn btn-danger" id="btn1" data-toggle='modal' data-target='#myModal') + New Complaint
+  script.
+   function show() {
+    var x = document.getElementById("tb");
+    if (x.style.display === "none") {
+    x.style.display = "";
+    } else {
+    x.style.display = "none";
+    }
+    }
+  script.
+   function model() {
+    var x = document.getElementById("tb");
+    if (x.style.display === "") {
+    x.style.display = "none";
+    }
+    }
+
+  script.
+   function done() {
+    var x = document.getElementById("done");
+    if (x.style.display === "none") {
+    x.style.display = "";
+    } else {
+    x.style.display = "none";
+    }
+    }

@@ -1,0 +1,113 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/sidebar.css')
+  link(rel="stylesheet", href="/stylesheets/rector/header.css")
+  .header-block
+    h1 HOSTEL MANAGEMENT
+    a(href='/logout') Logout
+  .row
+    .col-sm-2
+      .w3-sidebar
+          ul
+            li
+              a(href='/rectorhome') Home
+            li
+              a(href='/studentreg') Student Registration
+            li
+              a(href='/studentdetails') Student Details
+            li
+              a(href='/hosteldetails') Hostel Details
+            li
+              a(href='/complaint') Complaints
+            li
+              a(href='/attendance') Attendance
+            li
+              a(href='/leave') Night Out
+            li
+              a(href='/noticeupdate') Notice
+  .container
+    h2(class="header1") Student Complaints
+    table(class="table" style="width:80vw;")
+      thead
+        tr
+          td(colspan="6")
+            button(class="btn btn-primary" id="create" type="button" data-toggle='modal' data-target='#addHostel') +Add
+        tr
+          th(style="text-align:center") Select Hostel
+        tbody
+          -if(data.length > 0)
+            tr
+              td
+                each dat in data  
+                  div(class="hostel" style="display:inline-flex;position:relative")
+                    button(type="button" class="btn" data-target='#remove' data-toggle="modal" style="position:absolute;right:5px;top:5px;border-radius:60px;background-color:grey;font-size:15px") &times;
+                    a(href="/hostel_info/"+`${dat.hostel_no}/`+dat.id class="btn btn-success m-4" style="padding: 50px 100px;") #{dat.hostel_no}  
+                    #remove.modal
+                      .modal-dialog.modal-dialog-centered
+                        .modal-content
+
+                          .modal-header
+                            h4.modal-title New Hostel
+                            button.close(type='button' data-dismiss='modal') &times;
+
+                          .modal-body
+                            .container
+                              form(action="/remove_hostel/"+dat.id, method="post")
+                                label(for="sure") Are You Sure ?
+                                input(type="text", name="hostel" value=dat.hostel_no style="display:none")
+                                .modal-footer    
+                                      button(type="submit" class="btn btn-danger m-2") Remove
+                                      button(class="btn btn-primary" data-dismiss='modal') Cancel  
+          -else
+            tr
+              td(colspan="6" style="text-align:center") No Hostel
+
+    
+
+  //-    each dat in data
+        form
+        button(class="btn btn-success" type="button" onclick="show()") #{dat.hostel_no}
+       
+
+
+  #addHostel.modal
+    .modal-dialog
+      .modal-content
+
+        .modal-header
+          h4.modal-title New Hostel
+          button.close(type='button' data-dismiss='modal') &times;
+
+        .modal-body
+          .container
+              form(action='/addhostel' method='POST')
+                label(for="hostelname") Hostel Name:
+                input(type="text" name='hostelname' class="form-control" placeholder='Enter Hostel Name')
+                br
+                label(for="category") Category
+                select(name='category' class="form-control")
+                  option(value-="") Select Option
+                  option(value="Boy's hostel") Boy's Hostel
+                  option(value-="Girl's Hostel") Girl's Hostel
+                br
+                label(for="rectorname") Rector Name:
+                input(type="text" name='rectorname' class="form-control" placeholder='Enter Rector Name')
+                br
+                label(for="totalroom") No. of Rooms:
+                input(type="number" name='totalroom' class="form-control" placeholder='Enter Total Rooms')
+                br
+                label(for="totalroom") No. of Beds(Each Room):
+                input(type="number" name='totalbed' class="form-control" placeholder='Enter Total Beds')
+                br
+                button(type='submit' class="btn btn-danger" id="btn2") Submit
+  
+  script.
+    function show(){
+      var x = document.getElementById('hosteldata');
+      if(x.style.display === "none"){
+        x.style.display = "";
+      }else{
+        x.style.display = "none";
+      }
+    }

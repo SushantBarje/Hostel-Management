@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/rector/sidebar.css')
+  link(rel="stylesheet", href="/stylesheets/rector/header.css")
+  link(rel="stylesheet", href="/stylesheets/rector/student_reg.css")
+  #allocate.modal
+    .modal-dialog
+      .modal-content
+
+        .modal-header
+          h4.modal-title New Hostel
+          button.close(type='button' data-dismiss='modal') &times;
+
+        .modal-body
+          .container
+            each dat in data1
+              a(href = "/allocatehostel"type="button" id="datatarget" class="btn btn-success" value=dat.room_no) #{dat.room_no}  
+
+

@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/stylesheets/index.css')
+  title 
+  h1 HOSTEL MANAGEMENT
+  .header-block
+    a(href='/index') Home
+    a(href='/facilities') Facilities
+    a(href='/gallery') Gallery
+    a(href='/about') About
+    a(href='/contact') Contact Us
+  .w3-sidebar
+    ul
+      li
+        a(href="#") Login
+        ul
+          li
+            a(href='/rectorlogin') Rector
+          li
+            a(href='/studentlogin') Student
+      li
+        a(href='/notice') Notice
+      li
+        a(href="/profilepic") Profile Pic

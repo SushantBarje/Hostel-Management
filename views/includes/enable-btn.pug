@@ -1,0 +1,23 @@
+#enable-btn.modal
+    .modal-dialog
+      .modal-content
+
+        .modal-header
+          h4.modal-title Night Out Form
+          button.close(type='button' data-dismiss='modal') &times;
+
+        .modal-body
+          form(action='/studentnightout' method='post')
+            div
+              .form-group
+                label(for='reason') Reason
+                textarea(name='reason' class="form-control" required='')
+              .form-group
+                .row
+                  .col
+                    label(for='goingdate') Going Date
+                    input(type='date' class="form-control" name='goingdate' required='')
+                  .col
+                    label(for='returningdate') Returning Date
+                    input(type='date' class="form-control" name='returningdate' required='')
+              button(type='submit' class="btn btn-primary" id="btn2") Submit

@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href="stylesheets/studentlogin.css")
+  .header-block
+    a(href="/")
+      span
+        img(src="stylesheets/svg/arrow_back-24px.svg", alt="", srcset="")
+        | Back
+    h1 HOSTEL MANAGEMENT 
+  .loginbox
+    form(action='studentauth' method='post' autocomplete='off')
+      h2 Student Login
+      .form-group
+        label(for='email') Email
+        div
+          input(type='email' class="form-control" name='email' placeholder='Enter Email' required='')
+      .form-group
+        label(for='password') Password
+        div
+          input(type='password' class="form-control" name='password' placeholder='Enter Password' required='')
+      button(type='submit' class="btn btn-primary") Submit
+    a(href='/new_reg' id="new-reg") New Registration
+
+  

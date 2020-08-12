@@ -1,0 +1,102 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/sidebar.css')
+  link(rel="stylesheet", href="/stylesheets/studentnightout.css")
+  .header-block
+    h1 HOSTEL MANAGEMENT
+    a(href='/logout') Logout
+  .w3-sidebar
+    ul
+      li
+        a(href='/studentdash') Dashboard
+      li
+        a(href='/studentprofile') Profile
+      li
+        a(href='/studentcomplaint') Complaint
+      li(id="active")
+        a(href='/studentnightout') Night Out
+      li
+        a(href='/stdnotice') Notice 
+  .container
+    h2 Night Out 
+    hr
+    .contents
+      button(type="button" id="apply_complaint" class="btn btn-danger" data-toggle='modal' data-target='#myModal' onclick="model()") + New Night Out
+      button(type="button" id="history" class="btn btn-primary" ) History
+
+    table.table.table-bordered(id="history_table")
+      thead.thead
+        tr
+          th ID
+          th Applied Date
+          th Reason
+          th Going Date
+          th Return Date
+          th Reply
+      tbody
+        -if(data.length > 0)
+          each dat in data
+            tr
+              td #{dat.id}
+              td #{dat.applied_date}
+              td #{dat.reason}
+              td #{dat.going_date}
+              td #{dat.return_date}
+              td #{dat.status}
+        -else
+          tr
+            td(style="text-align:center" colspan="9") No Night Out Form
+    
+  #myModal.modal
+    .modal-dialog
+      .modal-content
+
+        .modal-header
+          h4.modal-title Night Out Form
+          button.close(type='button' data-dismiss='modal') &times;
+
+        .modal-body
+          form(action='/studentnightout' method='post')
+            div
+              .form-group
+                label(for='reason') Reason
+                textarea(name='reason' class="form-control" required='')
+              .form-group
+                .row
+                  .col
+                    label(for='goingdate') Going Date
+                    input(type='date' class="form-control" name='goingdate' required='')
+                  .col
+                    label(for='returningdate') Returning Date
+                    input(type='date' class="form-control" name='returningdate' required='')
+              button(type='submit' class="btn btn-primary" id="btn2") Submit
+
+
+    script.
+      function show(){
+        var x = document.getElementById("tb");
+        if(x.style.display === "none"){
+          x.style.display = "";
+        }else{
+          x.style.display = "none";
+        }
+      }
+    script.
+      function model(){
+        var x = document.getElementById('tb');
+        if(x.style.display === ""){
+          x.style.display = "none";
+        }
+      }
+    script.
+      $(document).ready(function(){
+        $('#history_table').hide();
+        $('#history').click(function(){
+          $('#history_table').toggle();
+        })
+      })
+    script.
+      const routeObj = {
+        studentname : 'sushant';
+      }

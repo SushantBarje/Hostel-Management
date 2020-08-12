@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/sidebar.css')
+  link(rel="stylesheet", href="/stylesheets/rector/header.css")
+  
+  .header-block
+    h1 HOSTEL MANAGEMENT
+    a(href='/logout') Logout
+  .w3-sidebar
+    ul
+      li
+        a(href='/rectorhome') Home
+      li
+        a(href='/studentreg') Student Registration
+      li
+        a(href='/studentdetails') Student Details
+      li
+        a(href='/hosteldetails') Hostel Details
+      li
+        a(href='/complaint') Complaints
+      li
+        a(href='/attendance') Attendance
+      li
+        a(href='/leave') Night Out
+      li
+        a(href='/noticeupdate') Notice
+  h1 Notice
+  //-table(class="table")
+    thead
+      tr
+        th Id
+        th Notice
+        th Date
+    tbody
+      each dat in notice
+      tr
+        td #{dat.id}
+        td #{dat.notice}
+        td #{dat.date}
+
+  form(action = "/notice_update" method = "post")
+    .container
+      .form-group
+        textarea(cols='80' rows='10' data-control="disabled" name="notice_des") #{notice}
+        br
+        button(type='submit' class="btn btn-primary" name='btn') Update Notice

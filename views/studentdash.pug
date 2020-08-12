@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/sidebar.css')
+  link(rel="stylesheet", href="/stylesheets/rector/header.css")
+  link(rel="stylesheet", href="/stylesheets/studentdash.css")
+  meta
+  .header-block
+    h1 HOSTEL MANAGEMENT
+    a(href='/logout') Log out
+  .w3-sidebar
+    ul
+      li(id="active")
+        a(href='/studentdash') Dashboard
+      li
+        a(href='/studentprofile') Profile
+      li
+        a(href='/studentcomplaint') Complaint
+      li
+        a(href='/studentnightout') Night Out
+      li
+        a(href='/stdnotice') Notice

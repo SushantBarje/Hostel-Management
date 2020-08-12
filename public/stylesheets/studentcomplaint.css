@@ -1,0 +1,99 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    display: inline-block;
+    padding : 10px;
+    margin: 0;
+    background-color: lightblue;
+}
+
+
+.header-block{
+    background-color: lightblue;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.header-block a{
+    float: right;
+    padding: 20px;
+    text-decoration: none;
+}
+
+.header-block a:hover{
+    color: white;
+    background-color: black;
+}
+
+.navbar{
+    padding: 20px;
+    background-color: rgb(97, 92, 92);
+    color: aliceblue;
+    position: sticky;
+}
+
+.container{
+    position: relative;
+    left: 5%;
+}
+.contents{
+    display: flex;
+    justify-content: center;
+}
+
+.container .contents #btn3{
+    justify-content: center;
+    padding: 50px 100px;
+    margin: 20px;
+}
+
+.container #btn4{
+    padding: 50px 140px;
+    margin: 20px;
+}
+
+.container #btn5{
+    padding: 50px 100px;
+    margin: 20px;
+}
+
+h2{
+    display: block;
+    margin-top: 50px;
+    text-align: center;
+}
+
+#btn1{
+    position: relative;
+    left: 40%;
+    border: 2px solid black;
+}
+
+table{
+    position: relative;
+    top: 50px;
+}
+
+.model-title{
+    text-align: center;
+}
+
+.modal-body{
+    position: relative;
+    left: -20px;
+    justify-content: center;
+}
+
+#btn2{
+    position: relative;
+    left: 40%;
+}
+
+select{
+    margin-bottom: -20px;
+}

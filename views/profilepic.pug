@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/sidebar.css')
+  link(rel="stylesheet", href="/stylesheets/rector/header.css")
+  .header-block
+    h1 HOSTEL MANAGEMENT
+    a(href='/logout') Logout
+  .w3-sidebar
+    ul
+      li
+        a(href='/rectorhome') Home
+      li
+        a(href='/studentreg') Student Registration
+      li
+        a(href='/studentdetails') Student Details
+      li
+        a(href='/hosteldetails') Hostel Details
+      li
+        a(href='/complaint') Complaints
+      li
+        a(href='/attendance') Attendance
+      li
+        a(href='/leave') Night Out
+      li
+        a(href='/noticeupdate') Notice
+  .container
+    img()
+    input(type="file" style="height:400px;width:600px");
+      

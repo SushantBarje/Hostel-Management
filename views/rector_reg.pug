@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/studentdash.css')
+  h1 HOSTEL MANAGEMENT
+  a(href='/') Back
+  h2 Hostel Management System
+  .adminloginbox
+  form(action='' method='post' autocomplete='off')
+    h2 Rector Registration
+    .form-group
+      label(for='username') Email
+      div
+        input(type='email' name='email' placeholder='Enter Email' required='')
+    .form-group
+      label(for='username') Username
+      div
+        input(type='text' name='username' placeholder='Enter Username' required='')
+    .form-group
+      label(for='password') Password
+      div
+        input(type='password' name='password' placeholder='Enter Password' required='')
+    button(type='submit') Submit

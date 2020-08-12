@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/sidebar.css')
+  link(rel="stylesheet", href="/stylesheets/rector/header.css")
+  link(rel="stylesheet", href="/stylesheets/rector/rectorhome.css")
+  .header-block
+    h1 HOSTEL MANAGEMENT
+    a(href='/logout') Logout
+  .row
+    .col-sm-2
+      .w3-sidebar
+        ul
+          li
+            a(href='/rectorhome') Home
+          li
+            a(href='/studentreg') Student Registration
+          li
+            a(href='/studentdetails') Student Details
+          li
+            a(href='/hosteldetails') Hostel Details
+          li
+            a(href='/complaint') Complaints
+          li
+            a(href='/attendance') Attendance
+          li
+            a(href='/leave') Night Out
+          li
+            a(href='/noticeupdate') Notice
+    .col-sm-9
+      .card-deck
+        .card(style="background-color:#28a745")
+          .card-body
+            .card-title
+              h2 Students
+            .card-text
+              p Lorem ipsum dolor sit amet.
+            button(class="btn btn-primary") See more
+        .card
+          .card-body
+              .card-title
+                h2 Students
+              .card-text
+                p Lorem ipsum dolor sit amet.
+              button(class="btn btn-primary") See more
+        .card
+          .card-body
+              .card-title
+                h2 Students
+              .card-text
+                p Lorem ipsum dolor sit amet.
+              button(class="btn btn-primary") See more

@@ -1,0 +1,52 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    display: inline-block;
+    padding : 10px;
+    margin: 0;
+    background-color: lightblue;
+}
+
+.header-block{
+    background-color: lightblue;
+    
+}
+
+.header-block a{
+    float: right;
+    padding: 20px;
+    text-decoration: none;
+}
+
+.header-block a:hover{
+    color: white;
+    background-color: black;
+}
+
+td{
+    font-size: medium;  
+}
+
+input[type="text"]{
+    border:none;
+    border-bottom: 1px solid grey;
+    border-radius: 0%;
+    position: relative;
+    left: -30%;
+}
+
+#header2{
+    text-align: center;
+    margin-top: 20px;
+}
+
+table{
+    position: relative;
+    margin-top: 35px;
+    left:10%;
+    top:50%;
+}

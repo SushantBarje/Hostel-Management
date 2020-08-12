@@ -1,0 +1,157 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/rector/sidebar.css')
+  link(rel="stylesheet", href="/stylesheets/rector/header.css")
+  .header-block
+      h1 HOSTEL MANAGEMENT
+      a(href='/logout') Logout
+  .row
+    .col-sm-2
+      .w3-sidebar
+        ul
+          li
+              a(href='/rectorhome') Home
+          li
+              a(href='/studentreg') Student Registration
+          li
+              a(href='/studentdetails') Student Details
+          li
+              a(href='/hosteldetails') Hostel Details
+          li
+              a(href='/complaint') Complaints
+          li
+              a(href='/attendance') Attendance
+          li
+              a(href='/leave') Night Out
+          li
+              a(href='/noticeupdate') Notice
+    .col-sm-10
+      h2 Student Information
+      button(type="button" data-target="#enable-btn" data-toggle="model")
+      each dat in data
+        .row
+          .col-sm-5
+            table(class="table table-bordered mt-4")
+              tr
+                td(style="height:250px" colspan = 2)
+                  img(src=`/images/upload/${dat.pic_name}`, alt="", srcset="" data-control=`${dat.id}` class="avtar-display" style="min-width: 130px;max-height: 150px;display: block;margin-bottom:20px")
+                  form(action="/upload_image/"+dat.id, method="post", id="form", enctype="multipart/form-data")
+                    label(class="btn btn-primary" for="avtar") Select Image
+                    input(type="file" name="imagename" id="avtar", data-control=dat.id, style="display:none")
+                  button(type="button" onclick="myfun()" id="rotate") Rotate
+            form(action="/edit_student_details/"+dat.id, id="main-form" method="post")
+              table(class="table table-bordered mt-4")
+                tr(class="table-danger")
+                  th(colspan=2 ) General Information
+                tr
+                  th Name :
+                  td 
+                    input(type="text" name="fullname" value=dat.fullname, id="fullname" class="form-control")
+                    button(type="button" id="fullname-btn" class="btn btn-primary sm") Enable for Student
+                tr
+                  th Class :
+                  td 
+                    input(type="text" name="class" value=dat.class, class="form-control")
+                tr 
+                  th Branch :
+                  td 
+                    input(type="text" name="branch" value=dat.branch, class="form-control")
+                tr
+                  th Gender : 
+                  td 
+                    input(type="text" name="gender" value=dat.gender, class="form-control")
+                tr
+                  th Email : 
+                  td 
+                    input(type="text" name="email" value=dat.email, class="form-control")
+                tr
+                  th Contact no :
+                  td 
+                    input(type="text" name="contact_no" value=dat.contact_no, class="form-control")
+                tr
+                  th DOB :
+                  td 
+                    input(type="text" name="dob" value=dat.dob, class="form-control")
+          .col-sm-5
+            table(class="table table-bordered mt-4")
+              tr
+                th Student ID : 
+                td <b> #{dat.id}
+              tr
+                th(style="width:150px") Hostel No.:
+                td <b> #{dat.hostel} 
+              tr
+                th(style="width:150px") Room No.:
+                td <b> #{dat.room_no}
+
+            table(class="table table-bordered mt-5")
+              tr
+                th Permanent Address:
+              tr
+                td(style="height:30px;") 
+                  textarea(name="address", cols="50", rows="3" form="main-form") #{dat.address}
+
+            table(class="table table-bordered mt-5") 
+              tr
+                th Father Name :
+                td 
+                  input(type="text" name="fathername", form="main-form" value=dat.fathername, class="form-control")
+              tr
+                th Mother Name :
+                td 
+                  input(type="text" name="mothername", form="main-form" value=dat.mothername, class="form-control")
+              tr
+                th Other(if any) : 
+                td 
+                  input(type="text" name="other", form="main-form" value=dat.other, class="form-control")
+              tr 
+                th Relation(if any) :
+                td 
+                  input(type="text" name="relation", form="main-form" value=dat.relation, class="form-control")
+              tr
+                th Gaurdian's Contact no. :
+                td 
+                  input(type="text" name="gcontact", form="main-form" value=dat.gcontact, class="form-control")
+              tr
+                th Gaurdian's Email :
+                td 
+                  input(type="email" name="gemail", form="main-form" value=dat.gemail, class="form-control")
+        .row
+          .col-sm-5
+          .col-sm-2.mb-5
+            input(type="Submit", value="Submit" class="btn btn-primary")
+          .col-sm-5
+
+  script.
+    $(document).ready(function(){
+      $('#avtar').on('change',function(e){
+        e.preventDefault();
+        var data = new FormData();
+        var filename = e.target.files[0].name;
+        $('#form').ajaxSubmit({
+          data : {title : filename},
+          contenType : 'application/json',
+          success: function(data){
+            $('img').attr('src','/images/upload/'+data);
+            alert('Profile Pic Uploaded');
+          },
+          error: function(){
+            alert('Probel while Uploading...');
+          }
+        })
+        return false;
+      });
+    });
+
+
+  script.
+    var angle = 0;
+    function myfun(){
+      var x = document.getElementById('pic');
+      var y = document.getElementById('rotate');
+      angle += 90;
+      x.style.transform = 'rotate('+angle+'deg)'
+    }
+  script(src="/javascripts/studentdetails-main.js")
+  script(src="/javascripts/studentdetails-stud.js")

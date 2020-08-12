@@ -1,0 +1,119 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/sidebar.css')
+  link(rel="stylesheet", href="/stylesheets/rector/header.css")
+  link(rel="stylesheet", href="/stylesheets/rector/student_reg.css")
+  .header-block
+    h1 HOSTEL MANAGEMENT
+    a(href='/logout') Logout
+  .row
+    .col-sm-2
+      .w3-sidebar
+        ul
+          li
+            a(href='/rectorhome') Home
+          li
+            a(href='/studentreg') Student Registration
+          li
+            a(href='/studentdetails') Student Details
+          li
+            a(href='/hosteldetails') Hostel Details
+          li
+            a(href='/complaint') Complaints
+          li
+            a(href='/attendance') Attendance
+          li
+            a(href='/leave') Night Out
+          li
+            a(href='/noticeupdate') Notice
+    .col-sm-9
+      .container
+        h2(style="padding:10px 0 10px 0" id="header") Student Registration
+        form( action='/studentreg' method='post' )
+          h3 General Details
+          .form-group
+            label(for='fullname') Full Name :
+            input(type='text' class='form-control' name='fullname' required='')
+          .form-row
+            .form-group.col-sm-3
+              label(for="gender") Gender:
+              select(name="gender" class="form-control col-sm-10" required)
+                option(value="Male") Male
+                option(value="Female") Female
+                option(value="other") Others
+            .form-group.col-sm-4
+              label(for='bdate') Date of Birth
+              input(type='date' class="form-control col-sm-10"  name='bdate' required='')
+            .form-group.col-sm-5
+              label(for='contact_no') Contact No.
+              input(type='text' class='form-control col-sm-12' name='contact_no' required='')
+          .form-group
+            label(for='email') Email
+            input(type='email' class='form-control' name='email' required='')
+          .form-group
+            label(for='address') Address
+            input(type='text' class='form-control' name='address' required='')
+          .form-row
+            .form-group.col-md-6
+              label(for='class') Class
+              input(type='text' class='form-control' name='class' required='')
+            .form-group.col-md-6
+              label(for='Branch') Branch
+              input(type='text' class='form-control' name='branch' required='')
+          h4 Gaurdian's Details
+          .form-group
+            label(for='fathername') Father&apos;s Name
+            input(type='text' class='form-control' name='fathername' required='')
+          .form-group
+            label(for='mothername') Mother&apos;s Name
+            input(type='text' class='form-control' name='mothername' required='')
+          .form-row
+            .form-group.col-sm-6
+              label(for='other') If other please mention?
+              input(type='text' class='form-control' name='other' required='' placeholder='Enter the Name')
+            .form-group.col-sm-6
+              label(for='relation') Relation
+              input(type='text' class='form-control' name='relation')
+          .form-group
+            label(for='gcontact_no') Contact No.
+            input(type='text' class='form-control' name='gcontact_no' required='')
+          .form-group
+            label(for='gemail') Email
+            input(type='email' class='form-control' name='gemail')
+          .form-submit(style="display:flex; justify-content:center; align-item:center;")
+            button(type='submit' id="buttonsubmit" class="btn btn-primary m-3" style="align-item:center" data-controls=`${message}` name='form-submit' onclick="myfun1()") Submit
+
+    script.
+      function myfun1(){
+
+        var msg = "#{message}";
+        alert(msg);
+      }
+
+  script.
+    $(document).ready(function(){
+      $('#buttonid').click(function(){
+        $.ajax({
+          url : '/allocateroom',
+          type : 'GET',
+          datatype : 'json',
+          success : function(data) {
+            console.log('its ok' + data);
+          }
+        })
+      })
+    })
+
+  //-script.
+    function myfun2(datavalue) {
+      $.ajax({
+        url : '/allocateroom/'+datavalue),
+        type : 'post',
+        data : {datapost : datavalue},
+
+        success : function(result){
+          $('#data-target').pug(result);
+        }
+      })
+    }

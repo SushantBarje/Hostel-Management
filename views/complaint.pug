@@ -1,0 +1,88 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/sidebar.css')
+  link(rel="stylesheet", href="/stylesheets/rector/header.css")
+  .header-block
+    h1 HOSTEL MANAGEMENT
+    a(href='/logout') Logout
+  .w3-sidebar
+    ul
+      li
+        a(href='/rectorhome') Home
+      li
+        a(href='/studentreg') Student Registration
+      li
+        a(href='/studentdetails') Student Details
+      li
+        a(href='/hosteldetails') Hostel Details
+      li
+        a(href='/complaint') Complaints
+      li
+        a(href='/attendance') Attendance
+      li
+        a(href='/leave') Night Out
+      li
+        a(href='/noticeupdate') Notice
+  div(class="container")
+    h2(class="header1") Student Complaints
+
+    table(class="table table-bordered" style="width:80vw")
+      thead
+        tr
+          td(colspan="6")
+            button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#addcomplaint") +Add Complaint
+        tr
+          th Complaint No.
+          th Complaint Type
+          th Waiting
+          th Solved
+          th
+        tbody
+          -if(data[0].length > 0)
+            each dat in data[0]
+              tr
+                td #{dat.id}
+                td #{dat.complaint_name}
+                td
+                  a(href="/waiting/"+dat.id class="btn btn-secondary") See
+                    -if(data[1].length > 0)
+                      span(class="badge badge-light m-2") #{data[1].length}
+                td
+                  a(href="/solved/"+dat.id class="btn btn-secondary") See
+                td 
+                  button(class="btn btn-danger" data-toggle="modal" data-target="#remove") Remove
+                  #remove.modal
+                    .modal-dialog
+                      .modal-content
+
+                        .modal-header
+                          h4.modal-title New Hostel
+                          button.close(type='button' data-dismiss='modal') &times;
+
+                        .modal-body
+                          label(for="confirm") Do you really want to Remove '#{dat.complaint_name}' Permanently?
+                          br
+                          a(href="/remove_complaint/"+dat.id class="btn btn-danger m-4") OK
+                          button.btn.btn-dark.m-4(type='button' data-dismiss='modal') &times; Cancel     
+          -else
+            tr
+              td(colspan="6" style="text-align:center") No Pre Defined Complaints. Please add the new Complaints
+              
+  
+  #addcomplaint.modal
+    .modal-dialog
+      .modal-content
+
+        .modal-header
+          h4.modal-title New Hostel
+          button.close(type='button' data-dismiss='modal') &times;
+
+        .modal-body
+          .container
+            form(action="/addcomplaint" method='post')
+              label(for="complaintname") Complaint Name:
+              input(type="text" name="complaintname" class="form-control" placeholder='Enter Complaint Name')
+              br
+              button(type='submit' class="btn btn-danger" id="btn2") + Add
+

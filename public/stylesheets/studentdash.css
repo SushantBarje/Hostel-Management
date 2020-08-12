@@ -1,0 +1,28 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    display: inline-block;
+    padding : 10px;
+    margin: 0;
+    background-color: lightblue;
+}
+
+
+.header-block{
+    background-color: lightblue;
+}
+
+.header-block a{
+    float: right;
+    padding: 20px;
+    text-decoration: none;
+}
+
+.header-block a:hover{
+    color: white;
+    background-color: black;
+}

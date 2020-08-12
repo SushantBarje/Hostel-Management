@@ -1,0 +1,117 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/sidebar.css')
+  link(rel="stylesheet", href="/stylesheets/rector/header.css")
+  .header-block
+    h1 HOSTEL MANAGEMENT
+    a(href='/logout') Logout
+  .w3-sidebar
+    ul
+      li
+        a(href='/rectorhome') Home
+      li
+        a(href='/studentreg') Student Registration
+      li
+        a(href='/studentdetails') Student Details
+      li
+        a(href='/hosteldetails') Hostel Details
+      li
+        a(href='/complaint') Complaints
+      li
+        a(href='/attendance') Attendance
+      li
+        a(href='/leave') Night Out
+      li
+        a(href='/noticeupdate') Notice
+  .container
+    div.heading
+      h2(class="header1" style="display:inline-block") Student Complaints
+      a(href="/nightout_history" class="btn btn-primary m-4" style="float:right") History
+    div(class="input-group mt-3 input-group-lg")
+      div(class="input-group-prepend")
+        span(class="input-group-text") Search
+      input(type="text" id="myInput" class="form-control")
+
+    table.table.table-bordered(style="width:80vw;font-size:13px")
+      thead.thead
+        tr
+          th ID
+          th Applied Date
+          th Name
+          th Details
+      tbody(id="myTable")
+        -if(data.length > 0)
+          each dat in data
+            tr
+              td #{dat.id}
+              td #{dat.applied_date}
+              td #{dat.fullname}
+              td
+                button(type="button" class="details-button btn btn-danger" data-toggle="modal" data-target=`#details_${dat.id}`) View Details
+                .modal(id=`details_${dat.id}`)
+                  .modal-dialog
+                    .modal-content
+
+                      .modal-header
+                        h4.modal-title Night Out Form
+                        button.close(type='button' data-dismiss='modal') &times;
+
+                      .modal-body
+                        form(action="/updateleave/"+dat.id, method="post") 
+                          table.table.table-bordered
+                              tr
+                                th Nightout ID :
+                                td #{dat.id}
+                              tr
+                                th Student Name :
+                                td #{dat.fullname}
+                              tr
+                                th Room no :
+                                td #{dat.room_no}
+                              tr
+                                th Reason
+                                td #{dat.reason}
+                              tr
+                                th Going Date
+                                td #{dat.going_date}
+                              tr
+                                th Return Date
+                                td #{dat.return_date}
+                              tr
+                                th Gaurdian Name
+                                td #{dat.fathername}
+                              tr
+                                th Gaurdian Contact No :
+                                td #{dat.gcontact}
+                              tr
+                                th Permission:
+                                td
+                                  .row
+                                    .col
+                                      input(type="radio" name="leave" value='Approved')
+                                      label(for="leave") Approve
+                                    .col
+                                      input(type="radio" name="leave" value='Rejected')
+                                      label(for="leave") Reject
+                                      
+                          button(type="submit" class="btn btn-primary" style="position:relative;left:40%") Done
+        -else
+          tr
+            td(style="text-align:center" colspan="9") No Night Out Form
+
+  
+                
+
+
+  script.
+    $(document).ready(function(){
+      $('#myInput').on("keyup",function(){
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function(){
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        })
+      })
+
+
+    });

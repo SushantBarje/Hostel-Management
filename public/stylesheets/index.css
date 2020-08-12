@@ -1,0 +1,88 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  padding : 10px;
+  margin: 0;
+  background-color: lightblue;
+}
+
+.header-block{
+  padding: 20px 0;
+  margin: 0;
+  background-color: #3c3c3c;
+}
+
+
+.header-block a{
+  text-decoration: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 0px 10px;
+  font-size: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.header-block a:hover{
+  background-color:lightgray;
+  padding: 20px 20px;
+  margin: 0px 10px;
+  color: black;
+  
+}
+
+.w3-sidebar li {
+  text-decoration: none;
+  list-style-type: none;
+}
+.w3-sidebar ul li a{
+  border-bottom: 2px solid black;
+  width: 200px;
+  display: block;
+  padding: 20px 10px;
+  font-size: 20px;
+  text-decoration: none;
+  color:white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.w3-sidebar ul li:nth-child(1) {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 20px;
+}
+
+.w3-sidebar{
+  width: 200px;
+  position: absolute;
+  background-color: 	rgb(128,128,128);
+  box-shadow: 10px 10px 30px black;
+}
+
+.w3-sidebar ul li a:hover{
+  background-color: black;
+  color: white;
+}
+
+.w3-sidebar ul li ul{
+  display: none;
+  background-color: whitesmoke;
+}
+
+.w3-sidebar ul li ul li a{
+  color: black;
+}
+.w3-sidebar:hover ul {
+  display: block;
+}
+
+.w3-sidebar ul li ul li:hover{
+  background-color: lightslategrey;
+}
+
+.w3-sidebar ul li ul li a:hover{
+  color:white;
+}
+

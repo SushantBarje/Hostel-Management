@@ -1,0 +1,86 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    display: inline-block;
+    padding : 10px;
+    margin: 0;
+    background-color: lightblue;
+}
+
+
+.header-block{
+    background-color: lightblue;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.header-block a{
+    float: right;
+    padding: 20px;
+    text-decoration: none;
+}
+
+.header-block a:hover{
+    color: white;
+    background-color: black;
+}
+
+
+
+.container{
+    position: relative;
+    left: 3%;
+}
+
+h2{
+    display: block;
+    margin-top: 50px;
+    text-align: center;
+}
+
+#btn1{
+    position: relative;
+    left: 40%;
+    margin: 0;
+}
+
+#btn2{
+    position: relative;
+    left: 40%;
+}
+
+.container .contents #history{
+    padding: 50px 100px;
+    margin: 20px;
+}
+
+.container #apply_complaint{
+    justify-content: center;
+    padding: 50px 70px;
+    margin: 20px;
+}
+
+.container #btn5{
+    padding: 50px 100px;
+    margin: 20px;
+}
+
+.contents{
+    display: flex;
+    justify-content: center;
+}
+
+table{
+    position: relative;
+    top: 50px;
+}
+
+.model-title{
+    text-align: center;
+}
+

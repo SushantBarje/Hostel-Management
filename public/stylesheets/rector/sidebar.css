@@ -1,0 +1,28 @@
+.w3-sidebar{
+    width: 220px;
+    background-color:black;
+    color:white;
+    padding: 20px 0;
+}
+
+.w3-sidebar ul li{
+    padding: 10px 5px;
+    margin: 10px 0;
+}
+
+.w3-sidebar ul li:hover{
+    background-color: white;
+    color:black;
+}
+
+.w3-sidebar ul li a:hover{
+    background-color: white;
+    color:black;
+}
+
+.w3-sidebar ul li a{
+    display: block;
+    padding: 10px 5px;
+    width:200px;
+    text-decoration: none;
+}

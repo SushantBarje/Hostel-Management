@@ -1,0 +1,51 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.w3-sidebar{
+    position: fixed;
+    width: 200px;
+    background-color:black;
+    color:white;
+    
+}
+
+
+.w3-sidebar ul li{
+    padding: 20px 5px;
+    border-bottom: 1px solid rgb(78, 75, 75);
+    margin-right: 2px;
+}
+
+.w3-sidebar ul li:hover{
+    background-color: rgb(255, 255, 255);
+    color:black;
+}
+
+.w3-sidebar ul li a{
+    display: block;
+    padding: 10px 5px;
+    width:200px;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.w3-sidebar ul li a:hover{
+    color: black;
+    padding-left: 30px;
+}
+
+.w3-sidebar ul li:hover{
+    border-left: 7px solid rgb(71, 187, 226);
+}
+
+
+.w3-sidebar ul li#active{
+    padding: 20px 5px;
+    background-color: white;
+    color: black;
+    padding-left: 30px;
+    border-left: 7px solid rgb(71, 187, 226);
+}

@@ -1,0 +1,137 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/sidebar.css')
+  link(rel="stylesheet", href="/stylesheets/rector/header.css")
+  .header-block
+    h1 HOSTEL MANAGEMENT
+    a(href='/logout') Logout
+  .w3-sidebar
+      ul
+        li
+          a(href='/rectorhome') Home
+        li
+          a(href='/studentreg') Student Registration
+        li
+          a(href='/studentdetails') Student Details
+        li
+          a(href='/hosteldetails') Hostel Details
+        li
+          a(href='/complaint') Complaints
+        li
+          a(href='/attendance') Attendance
+        li
+          a(href='/leave') Night Out
+        li
+          a(href='/noticeupdate') Notice
+  .container
+    table.table
+      each dat in data[0]
+        tr
+          th Hostel Name :
+          td #{dat.hostel_no}
+        tr
+          th Room No. :
+          td #{dat.room_no}
+        tr
+          th Total Beds :
+          td #{dat.total_bed}
+        tr
+          th Occupied Beds :
+          td #{dat.occupied_bed}
+        tr
+          th Available Beds:
+          td #{dat.available_bed}
+        tr
+          th Room Status :
+          td(id="status" data-control=`${dat.status}`) #{dat.status}
+    table.table.table-bordered
+      thead
+        th ID
+        th Student Name
+        th View Details
+        th
+      tbody
+        -if(data[2].length > 0)
+          each dat in data[2]
+            tr
+              td #{dat.id}
+              td #{dat.fullname}
+              td
+                a(href="/studentdetails_info/"+dat.id class="btn btn-primary") View Details
+              td
+                button(class="btn btn-danger" type="button" data-toggle="modal" data-target="#remove") Remove
+                #remove.modal
+                  .modal-dialog.modal-dialog-centered
+                    .modal-content
+
+                      .modal-header
+                        h4.modal-title New Hostel
+                        button.close(type='button' data-dismiss='modal') &times;
+
+                      .modal-body
+                        .container
+                          form(action="/removestud/"+dat.id, method="post")
+                            label(for="sure") Are You Sure ?
+                            input(type="text", name="hostel" value=dat.hostel style="display:none")
+                            input(type="text", name="room_no" value=dat.room_no style="display:none")
+                            .modal-footer    
+                                  button(type="submit" class="btn btn-danger m-2") Remove
+                                  button(class="btn btn-primary" data-dismiss='modal') Cancel
+        -else
+          tr
+            td(colspan="4")
+              h5(style="text-align:center") Room is Empty
+        tr
+          td(colspan="4")
+            button(class="btn btn-primary" type="button" id="add" data-toggle="modal" data-target="#addstudent") +Add Student
+            #addstudent.modal
+              .modal-dialog.modal-dialog-centered.modal-lg
+                .modal-content
+
+                  .modal-header
+                    h4.modal-title New Hostel
+                    button.close(type='button' data-dismiss='modal') &times;
+
+                  .modal-body
+                    .container
+                      div(class="input-group mt-3 input-group")
+                        div(class="input-group-prepend")
+                          span(class="input-group-text") Search
+                        input(type="text" id="myInput" class="form-control")
+                        table(class="table table-bordered")
+                          thead
+                            th Student Name
+                            td Add
+                          tbody
+                            each dat in data[1]
+                              form(action="/allocateroom/"+dat.id, method="post")
+                                tr
+                                  each dat in data[0]
+                                    td(style="display:none")
+                                      input(type="text" name="hostel_no" value=dat.hostel_no)
+                                    td(style="display:none")
+                                      input(type="text" name="room_no" value=dat.room_no)
+                                tr
+                                  td #{dat.fullname}
+                                  td 
+                                    button(type="submit" class="btn btn-danger") +Add
+  script.
+    $(document).ready(function(){
+      $('#myInput').on("keyup",function(){
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function(){
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        })
+      })
+    });
+
+  script.
+    $(document).ready(function(){
+      var status = $('#status').attr('data-control');
+      if(status == 'Room full'){
+        $('#add').html('Full');
+        $('#add').removeAttr('data-toggle');
+      }
+  
+    })

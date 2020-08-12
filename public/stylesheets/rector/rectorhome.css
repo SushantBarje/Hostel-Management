@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    display: inline-block;
+    padding : 10px;
+    margin: 0;
+    background-color: lightblue;
+}
+
+
+.header-block{
+    background-color: lightblue;
+}
+
+.header-block a{
+    float: right;
+    padding: 20px;
+    text-decoration: none;
+}
+
+.header-block a:hover{
+    color: white;
+    background-color: black;
+}
+
+.navbar{
+    padding: 20px;
+    background-color: rgb(97, 92, 92);
+    color: aliceblue;
+    position: sticky;
+}
+

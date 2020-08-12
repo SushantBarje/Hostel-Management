@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container{
+           position: relative;
+           display: flex;
+           justify-content: space-around;
+        }
+        .container .card{
+            margin: 0 20px 0 20px;
+            position: relative;
+            width: 250px;
+            background: linear-gradient(0deg,#294b5a,rgb(41, 212, 255),#6ee2ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            border-radius: 4px;
+            text-align: center;
+            overflow: hidden;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card" id="card1">
+            <div>
+                <h2>20</h2>
+            </div>
+            <div>
+                <label>Students</label>
+            </div>
+            <div>
+                <button type="button">Click here</button>
+            </div>
+        </div>
+        <div class="card" id="card2">
+            <h2>30</h2>
+            <label>Students</label>
+            <button type="button">Click here</button>
+        </div>
+        <div class="card" id="card3">
+            <h2>40</h2>
+            <label>Students</label>
+            <button type="button">Click here</button>
+        </div>
+    </div>
+</body>
+</html>

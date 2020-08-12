@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/studentdash.css')
+  h1 HOSTEL MANAGEMENT
+  div
+    a(href='/') Home
+    a(href='/facilities') Facilities
+    a(href='/gallery') Gallery
+    a(href='/about') About
+    a(href='/contact') Contact Us
+  .side-dashboard
+    ul
+      li
+        | Login
+        ul
+          li
+            a(href='/rectorlogin') Rector
+          li
+            a(href='/studentlogin') Student
+      li
+        a(href='/notice') Notice
+  h1 Notice
+  div

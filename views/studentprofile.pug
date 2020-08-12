@@ -1,0 +1,71 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/sidebar.css')
+  link(rel="stylesheet", href="/stylesheets/studentprofile.css")
+  .header-block
+    h1 HOSTEL MANAGEMENT
+    a(href='/logout') Logout
+  .w3-sidebar
+    ul
+      li
+        a(href='/studentdash') Dashboard
+      li(id="active")
+        a(href='/studentprofile') Profile
+      li
+        a(href='/studentcomplaint') Complaint
+      li
+        a(href='/studentnightout') Night Out
+      li
+        a(href='/notice') Notice
+  .container
+    h2(id="header2") Profile
+    table(class="table table-borderless")
+      each dat in data
+        form(action="/profileedit/"+dat.id, method="post")
+          tr
+            td Name:
+            td 
+              input(type="text" class="form-control" id="change" name="fullname" value= dat.fullname disabled)
+          tr
+            td Gender:
+            td
+              input(type="text" id="gender" class="form-control" name="gender" value= dat.gender disabled)
+          tr
+            td Date of Birth:  
+            td 
+              input(type="text" class="form-control" id="change" name="dob" value= dat.dob)
+          tr  
+            td Contact No. :
+            td 
+              input(type="text" class="form-control" id="change" name="contact_no" value= dat.contact_no)
+          tr
+            td Email:
+            td 
+              input(type="text" class="form-control" id="change" name="email" value= dat.email)
+          tr
+            td Address:
+            td 
+              input(type="text" class="form-control" id="change" name="address" value= dat.address)
+          tr
+            td Class:
+            td 
+              input(type="text" class="form-control" id="change" name="studclass" value= dat.class)
+          tr
+            td Branch:
+            td 
+              input(type="text" class="form-control" id="change" name="branch" value= dat.branch)
+          tr
+            td(colspan = 2)
+              button(type="submit" id="edit" class="btn btn-primary" style="position:relative;left:40%") Update
+  script.
+    $(document).ready(function(){
+      $('#edit').click(function(){
+        $('#gender').removeAttr('disabled');
+        $('#edit').attr('id','done');
+      });
+
+      $('#done').click(function(){
+        alert('hii');
+      });
+    });
